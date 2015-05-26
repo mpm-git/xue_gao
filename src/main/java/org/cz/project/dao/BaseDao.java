@@ -1,0 +1,55 @@
+package org.cz.project.dao;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+
+
+
+
+public interface BaseDao<T> {
+
+	public Serializable save(T o);
+
+	public void delete(T o);
+
+	public void update(T o);
+
+	public void update(List<T> o);
+
+	public void saveOrUpdate(T o);
+
+	public T get(Class<T> c, Serializable id);
+
+	public T get(String hql);
+
+	public T get(String hql, Map<String, Object> params);
+
+	public List<T> find(String hql);
+
+	public List<T> find(String hql, Map<String, Object> params);
+
+	public List<T> find(String hql, int page, int rows);
+
+	public List<T> find(String hql, Map<String, Object> params, int page, int rows);
+
+	public Long count(String hql);
+
+	public Long count(String hql, Map<String, Object> params);
+
+	public int executeHql(String hql);
+
+	public int executeHql(String hql, Map<String, Object> params);
+	public int executeSQL(String sql);
+
+	void save(List<T> o);
+
+	Map query(String functionName);
+
+	Map executeWithCondition(String procedureName, Map<String, Object> condition);
+
+	Map executeByCondition(Class clazz, Map<String, Object> condition,
+			String order, PaginationModel pagination, String procedureName);
+	
+	
+}

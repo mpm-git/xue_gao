@@ -1,0 +1,135 @@
+﻿*{
+    font-family:微软雅黑;
+}
+.container-fluid {
+    font-size:8px;
+    font-family:微软雅黑;
+}
+.flow-box{
+    margin-bottom:30px;
+}
+@media(max-width:768px) {
+    .flow-chart {
+        width:80%;
+        height:auto;
+    }
+}
+
+.title-box{
+   height:48px;
+   color:#f10180;
+   border-top:2px solid #d8d8d8;
+   border-left:2px solid #fb48a7;
+   border-right:2px solid #fb48a7;
+   line-height:48px;
+   font-size:14px;
+   font-weight:bold;
+   background-color:#f9f9f9;
+}
+.item-list{
+    border-top:1px solid #eeecec;
+    border-left:2px solid #eeecec;
+    border-right:2px solid #eeecec;
+    border-bottom:none;
+    background-color:#fcfcfc;
+}
+@media(min-width:768px){
+    .item-list{
+        height:90px;
+    }
+}
+
+.item-img{
+    max-height:80px;
+    max-width:100%;
+    width:auto;
+    height:auto;
+    margin-top:5px;
+}
+@media(max-width:768px){
+    .item-img{      
+        width:auto;
+        height:auto;
+        max-height:80%;
+        max-width:100%;
+        margin-top:9px;
+    }
+}
+.item-info{
+  
+}
+@media(min-width:768px){
+    .item-info{
+        margin-top:15px;
+    }
+}
+.item-info p{
+    margin:0px;
+    line-height:30px;
+}
+.btn-minus,.btn-plus,.btn-delete{
+    height:25px;
+    width:25px;
+    padding:0px !important;
+    
+}
+.btn-minus{
+    border-right:none;
+    border-top-right-radius:0px;
+    border-bottom-right-radius:0px;
+}
+.btn-minus span,.btn-plus span,.btn-delete span{
+    color:#f43499;
+}
+.btn-plus{
+    border-left:none;
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+}
+@media(max-width:768px){
+    .btn-delete{
+        margin-top:15px;
+    }
+}
+
+.total-box{
+    border-bottom:2px solid #d8d8d8;
+    border-left:2px solid #d8d8d8;
+    border-right:2px solid #d8d8d8;
+    border-top:1px solid #eeecec;
+    background-color:#fafafa;
+}
+@media(min-width:768px){
+    .total-box{
+        height:50px;
+    }
+    .total-text{
+    line-height:50px !important;
+    }
+    #submit{
+        padding:0px;
+        height:45px !important;
+        margin-top:1px;
+        line-height:45px;
+    }
+}
+.total-text{
+    font-size:16px;
+    font-weight:bold;
+    line-height:30px;
+}
+.renminbi,#total{
+     color:#f10180;
+}
+#submit{
+    height:30px;
+    width:50%;
+    color:white;
+    background:none;
+    background-color:#f10180;
+    border-color:#f10180;
+    text-shadow:none;
+}
+#submit:hover,#submit:focus{
+    background-color:#f43499;
+}

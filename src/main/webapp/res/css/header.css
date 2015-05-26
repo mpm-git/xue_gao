@@ -1,0 +1,30 @@
+﻿.navbar{
+    height:112px;
+    background:none !important;
+    background-color:#6e6b68 !important;
+}
+.navbar .container{
+    height:112px;
+    background:none;
+}
+.navbar-header button{
+    background-color:#f43499;
+}
+.navbar-header button:hover,.navbar-header button:focus{
+    background:none !important;
+    background-color:#ca086f !important;
+}
+.navbar-header,#navbar{
+    margin-top:31px;
+}
+#navbar li a{
+    color:white;
+    font-weight:bold;
+    background-color:#f43499;
+}
+#navbar li a:hover{
+    background-color:#ca086f;
+}
+.clicked{
+    background-color:#ca086f !important;
+}
