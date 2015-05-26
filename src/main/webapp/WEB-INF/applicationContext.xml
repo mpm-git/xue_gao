@@ -74,7 +74,23 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSourcec3p0" />
-		<property name="packagesToScan" value="test.package" />
+		<property name="packagesToScan">
+			<list>
+				<!-- 可以加多个包 -->
+				<value>org.cz.project.entity.table</value>
+			</list>
+		</property>
+<!-- 	<property name="annotatedClasses"> -->
+<!-- 		<list> -->
+<!-- 			<value>test.package.Foo</value> -->
+<!-- 			<value>test.package.Bar</value> -->
+<!-- 		</list> -->
+<!-- 	</property> -->
+<!-- 		<property name="annotatedPackages" > -->
+<!-- 			<list> -->
+<!-- 				<value>org.cz.project.entity.table</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${jdbc.dialect}</prop>

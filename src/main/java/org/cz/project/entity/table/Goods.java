@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "USER_T")
+@Table(name = "goods")
 @NamedQueries({ @NamedQuery(name = "Goods.findAll", query = "SELECT g FROM Goods g")})
 public class Goods extends IdEntity {
 

@@ -192,37 +192,12 @@
 		</dependency>
 			
 		
-
-		<!-- Hibernate -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>com.springsource.org.hibernate</artifactId>
-			<version>3.3.2.GA</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>com.springsource.slf4j.api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>
-						com.springsource.org.apache.commons.collections
-					</artifactId>
-					<groupId>org.apache.commons</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- ecache-core lib (Hibernate need) -->
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache-core</artifactId>
-			<version>2.3.0</version>
-		</dependency>
-		<!-- JPA -->
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<version>1.0</version>
-		</dependency>
+		<!-- JPA 1.0（目前没有2.0） 与   hibernate-jpa-2.0-api 冲突--> 
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.persistence</groupId> -->
+<!-- 			<artifactId>persistence-api</artifactId> -->
+<!-- 			<version>2.0</version> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>javax.transaction</groupId>
@@ -232,36 +207,80 @@
 		<!-- Hibernate JPA Provider -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>com.springsource.org.hibernate.ejb</artifactId>
-			<version>3.4.0.GA</version>
-			<exclusions>
-				<!-- Exclude Commons Logging in favor of SLF4j -->
-				<exclusion>
-					<groupId>org.apache.commons</groupId>
-					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
-				</exclusion>
-				<exclusion>
-					<artifactId>com.springsource.slf4j.api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.6.9.Final</version>
 		</dependency>
+		<!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>com.springsource.org.hibernate.annotations</artifactId>
-			<version>3.4.0.GA</version>
-			<exclusions>
-				<!-- Exclude Commons Logging in favor of SLF4j -->
-				<exclusion>
-					<groupId>org.apache.commons</groupId>
-					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
-				</exclusion>
-				<exclusion>
-					<artifactId>com.springsource.slf4j.api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.6.9.Final</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>3.6.10.Final</version>
+		</dependency>
+		<!-- ecache-core lib (hibernate-ehcache need) -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>com.springsource.org.hibernate.ejb</artifactId> -->
+<!-- 			<version>3.4.0.GA</version> -->
+<!-- 			<exclusions> -->
+<!-- 				Exclude Commons Logging in favor of SLF4j -->
+<!-- 				<exclusion> -->
+<!-- 					<groupId>org.apache.commons</groupId> -->
+<!-- 					<artifactId>com.springsource.org.apache.commons.logging</artifactId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>com.springsource.slf4j.api</artifactId> -->
+<!-- 					<groupId>org.slf4j</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>com.springsource.org.hibernate.annotations</artifactId> -->
+<!-- 			<version>3.4.0.GA</version> -->
+<!-- 			<exclusions> -->
+<!-- 				Exclude Commons Logging in favor of SLF4j -->
+<!-- 				<exclusion> -->
+<!-- 					<groupId>org.apache.commons</groupId> -->
+<!-- 					<artifactId>com.springsource.org.apache.commons.logging</artifactId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>com.springsource.slf4j.api</artifactId> -->
+<!-- 					<groupId>org.slf4j</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
+<!-- 		</dependency> -->
+
+	<!-- Hibernate -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>com.springsource.org.hibernate</artifactId> -->
+<!-- 			<version>3.3.2.GA</version> -->
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId>com.springsource.slf4j.api</artifactId> -->
+<!-- 					<groupId>org.slf4j</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 				<exclusion> -->
+<!-- 					<artifactId> -->
+<!-- 						com.springsource.org.apache.commons.collections -->
+<!-- 					</artifactId> -->
+<!-- 					<groupId>org.apache.commons</groupId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
+<!-- 		</dependency> -->
+
 		<!-- Open JPA Provider -->
 		<dependency>
 			<groupId>org.apache.openjpa</groupId>
@@ -381,6 +400,17 @@
 			<name>Spring Maven Milestone Repository</name>
 			<url>http://repo.spring.io/milestone</url>
 			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
 		</repository>
 	</repositories>
 	<build>
