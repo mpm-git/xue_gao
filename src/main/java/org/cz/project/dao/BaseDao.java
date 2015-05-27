@@ -7,6 +7,11 @@ import java.util.Map;
 
 
 
+/**
+ * @author Administrator
+ *
+ * @param <T>
+ */
 public interface BaseDao<T> {
 
 	public Serializable save(T o);
@@ -29,9 +34,26 @@ public interface BaseDao<T> {
 
 	public List<T> find(String hql, Map<String, Object> params);
 
-	public List<T> find(String hql, int page, int rows);
+	public List<T> findByPage(String hql, int page, int rows);
+	public List<T> find(String hql, int start, int length);
 
-	public List<T> find(String hql, Map<String, Object> params, int page, int rows);
+	/**
+	 * @param hql
+	 * @param params
+	 * @param page start from 1
+	 * @param rows
+	 * @return
+	 */
+	public List<T> findBypage(String hql, Map<String, Object> params, int page, int rows);
+	/**
+	 * 
+	 * @param hql
+	 * @param params
+	 * @param start start from 0
+	 * @param length
+	 * @return
+	 */
+	public List<T> find(String hql, Map<String, Object> params, int start, int length);
 
 	public Long count(String hql);
 
@@ -50,6 +72,11 @@ public interface BaseDao<T> {
 
 	Map executeByCondition(Class clazz, Map<String, Object> condition,
 			String order, PaginationModel pagination, String procedureName);
-	
-	
+
+	QueryResult<List<T>> find2QueryResult(String hql, Map<String, Object> params,
+			int page, int rows);
+
+	QueryResult<List<T>> find2QueryResultByPage(String hql,Map<String, Object> params, int page, int rows);
+
+
 }

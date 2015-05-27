@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.cz.project.dao.BaseDao;
 import org.cz.project.dao.PaginationModel;
+import org.cz.project.dao.QueryResult;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Repository;
 
 
 
-@Repository("baseDao")
+@Repository(value="baseDao")
 public class BaseDaoImpl<T> implements BaseDao<T> {
 
 	private SessionFactory sessionFactory;
@@ -211,8 +212,30 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return q.list();
 	}
 
+	public QueryResult<List<T>> find2QueryResultByPage(String hql, Map<String, Object> params, int page, int rows) {
+		return find2QueryResult(hql,params,(page - 1) * rows,rows);
+	}
 	@Override
-	public List<T> find(String hql, Map<String, Object> params, int page, int rows) {
+	public QueryResult<List<T>> find2QueryResult(String hql, Map<String, Object> params, int start, int length) {
+		String _queryString=hql.trim().toLowerCase();
+		hql=hql.trim();
+		String _countQueryString=null;
+		if(_queryString.startsWith("from"))
+			_countQueryString="select count(*) "+hql;
+		else if(_queryString.indexOf(" from ")>-1)
+		{
+			_countQueryString="select count(*)"+hql.substring(_queryString.indexOf(" from "));
+		}
+		List<T> list = find(hql,params,start,length);
+		Long count = this.count(_countQueryString,params);
+		QueryResult<List<T>> result=new QueryResult<List<T>>(count, start, length,list);
+		return result;
+	}
+	public List<T> findByPage(String hql, Map<String, Object> params, int page, int rows) {
+		return find(hql,params,(page - 1) * rows,rows);
+	}
+	@Override
+	public List<T> find(String hql, Map<String, Object> params, int start, int length) {
 		Query q = this.getCurrentSession().createQuery(hql);
 		if (params != null && !params.isEmpty()) {
 			String[] namedParameters = q.getNamedParameters();
@@ -237,13 +260,18 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				}
 			}
 		}
-		return q.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
+		
+		return q.setFirstResult(start).setMaxResults(length).list();
 	}
 
 	@Override
-	public List<T> find(String hql, int page, int rows) {
+	public List<T> find(String hql, int start, int length) {
 		Query q = this.getCurrentSession().createQuery(hql);
-		return q.setFirstResult((page - 1) * rows).setMaxResults(rows).list();
+		return q.setFirstResult(start).setMaxResults(length).list();
+	}
+	@Override
+	public List<T> findByPage(String hql, int page, int rows) {
+		return find(hql,(page - 1) * rows,rows);
 	}
 
 	@Override

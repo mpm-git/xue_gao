@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.cz.project.service;
+package org.cz.project.jpa_base_service;
 
 
 /**

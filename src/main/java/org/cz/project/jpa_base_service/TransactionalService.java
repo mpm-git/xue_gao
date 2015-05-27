@@ -1,4 +1,4 @@
-package org.cz.project.service;
+package org.cz.project.jpa_base_service;
 
 import java.util.List;
 import java.util.Map;

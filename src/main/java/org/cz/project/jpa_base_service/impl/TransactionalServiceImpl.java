@@ -1,4 +1,4 @@
-package org.cz.project.service.impl;
+package org.cz.project.jpa_base_service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -9,8 +9,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.cz.project.service.QueryResult;
-import org.cz.project.service.TransactionalService;
+import org.cz.project.jpa_base_service.QueryResult;
+import org.cz.project.jpa_base_service.TransactionalService;
 import org.springframework.transaction.annotation.Transactional;
 
 
