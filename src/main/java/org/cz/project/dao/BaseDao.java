@@ -44,7 +44,7 @@ public interface BaseDao<T> {
 	 * @param rows
 	 * @return
 	 */
-	public List<T> findBypage(String hql, Map<String, Object> params, int page, int rows);
+	public List<T> findByPage(String hql, Map<String, Object> params, int page, int rows);
 	/**
 	 * 
 	 * @param hql

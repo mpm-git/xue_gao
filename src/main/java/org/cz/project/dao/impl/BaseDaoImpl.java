@@ -212,6 +212,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return q.list();
 	}
 
+	@Override
 	public QueryResult<List<T>> find2QueryResultByPage(String hql, Map<String, Object> params, int page, int rows) {
 		return find2QueryResult(hql,params,(page - 1) * rows,rows);
 	}
