@@ -157,10 +157,10 @@
 			                +'<p>'+goods[i].name+'</p>'       //商品名称
 			                +'</div>'
 			                +'<div class="col-xs-12 col-sm-6" style="margin-top:13px;">'
-			                +'<button type="button" class="btn btn-default btn-minus" aria-label="Left Align" onclick="minus('+i+',\''+goods[i].price+'\');">'
+			                +'<button type="button" id="bn_'+i+'" class="btn btn-default btn-minus" aria-label="Left Align" onclick="minus('+i+',\''+goods[i].price+'\');">'
 			                +'<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'
 			                +'</button>'
-			                +'<input id="input_'+i+'" class="number" type="text" style="width:30px;" value="'+goods[i].buynumber+'"/>'
+			                +'<input id="input_'+i+'" class="number" type="text" style="width:30px;" value="'+goods[i].buynumber+'" onblur="check('+goods[i].buynumber+','+i+','+goods[i].surplusnum+');"/>'
 			                +'<button id="btn_'+i+'" type="button" class="btn btn-default btn-plus" aria-label="Left Align" onclick="add_num('+i+','+goods[i].surplusnum+',\''+goods[i].price+'\');">'
 			                +'<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'
 			                +'</button>'
@@ -247,6 +247,8 @@
 	        	var total=total_price+parseInt(price)*num;
 	        	$('#total').html(''+total);
 	        	$('#input_'+i).attr('disabled',true);
+	        	$('#btn_'+i).attr('disabled',true);
+	        	$('#bn_'+i).attr('disabled',true);
         	}else{
         		//未选中
         		var total_price=parseInt($('#total').text());  //总金额
@@ -255,6 +257,17 @@
 	        	if(total>=0){
 		        	$('#total').html(''+total);
 	        	}
+	        	$('#input_'+i).attr('disabled',false);
+	        	$('#btn_'+i).attr('disabled',false);
+	        	$('#bn_'+i).attr('disabled',false);
+        	}
+        }
+        
+        //验证输入框中的数量大小
+        function check(buynumber,i,surplusnum){
+        	if($('#input_'+i).val()>surplusnum){
+        		$('#input_'+i).val(buynumber);
+        		alert('您购买的数量超过了剩余商品数量:'+surplusnum);
         	}
         }
         
