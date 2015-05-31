@@ -147,7 +147,7 @@
     			for(var i=0;i<goods.length;i++){
 		    		$('#good_list').append('<div class="row item-list">'
 		    				+'<div class="col-xs-1 text-center " style="padding:0px;padding-left:15px;padding-top:25px;padding-right:0px;">'
-		    				+'<input id="checkbox_'+i+'" type="checkbox" onclick="addTotalPrice('+i+',\''+goods[i].price+'\');"/>'
+		    				+'<input id="checkbox_'+i+'" name="checkbox" type="checkbox" onclick="addTotalPrice('+i+');" value="'+i+'"/>'
 		    				+'</div>'
 		    				+'<div class="col-xs-1 text-center " style="padding:0px;padding-left:15px;">'
 			                +'<img class="item-img img-thumbnail" src="'+goods[i].img_address+'" />'
@@ -157,7 +157,7 @@
 			                +'<p>'+goods[i].name+'</p>'       //商品名称
 			                +'</div>'
 			                +'<div class="col-xs-12 col-sm-6" style="margin-top:13px;">'
-			                +'<button type="button" id="bn_'+i+'" class="btn btn-default btn-minus" aria-label="Left Align" onclick="minus('+i+',\''+goods[i].price+'\');">'
+			                +'<button type="button" id="bn_'+i+'" class="btn btn-default btn-minus" aria-label="Left Align" onclick="minus('+i+',\''+goods[i].price+'\','+goods[i].surplusnum+');">'
 			                +'<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'
 			                +'</button>'
 			                +'<input id="input_'+i+'" class="number" type="text" style="width:30px;" value="'+goods[i].buynumber+'" onblur="check('+goods[i].buynumber+','+i+','+goods[i].surplusnum+');"/>'
@@ -171,7 +171,7 @@
 			                +'</div>' 	    
 			                +'<div class="col-xs-4 item-info">'
 			                +'<div class="col-xs-12 col-sm-9">'
-			                +' <p>￥'+goods[i].price+'</p>'    //价格
+			                +' <p>￥<span id="p_'+i+'">'+goods[i].price+'</span></p>'    //价格
 			                +'</div>'
 			                +'<div class="col-xs-12 col-sm-3">'
 			                +'<button type="button" class="btn btn-default btn-delete" onclick="canclegood('+goods[i].id+')">' 
@@ -204,6 +204,7 @@
 	        		$('#btn_'+i).attr("disabled",true);
 	        	}
         	}
+        	addTotalPrice(i);
         	//计算总金额
 //         	var total=0;
 //         	total=parseInt(price)*(number_+1);
@@ -212,17 +213,22 @@
 //         	$('#total').html(''+(p1+total));
         }
         
-        function minus(i,price){
+        function minus(i,price,surplusnum){
         	var num=$('#input_'+i).val();
         	var number=parseInt(num);
         	if(number>0){
 	        	$('#input_'+i).val(number-1);
-	        	$('#btn_'+i).attr("disabled",false);
+	        	if((number-1)>surplusnum){
+	        		$('#btn_'+i).attr("disabled",true);
+	        	}else{
+		        	$('#btn_'+i).attr("disabled",false);
+	        	}
 	        	//计算总金额
 // 	        	var total_price=parseInt($('#total').text());  //总金额
 // 	        	total_price=total_price-price;
 // 	        	$('#total').html(''+total_price);
         	}
+        	addTotalPrice(i);
         }
         
         function canclegood(id){
@@ -239,36 +245,54 @@
         }
         
         //选择checkbox改变总金额
-        function addTotalPrice(i,price){
-        	if($('#checkbox_'+i).is(':checked')){
-        		//选中
-	        	var total_price=parseInt($('#total').text());  //总金额
-	        	var num=$('#input_'+i).val();
-	        	var total=total_price+parseInt(price)*num;
-	        	$('#total').html(''+total);
-	        	$('#input_'+i).attr('disabled',true);
-	        	$('#btn_'+i).attr('disabled',true);
-	        	$('#bn_'+i).attr('disabled',true);
-        	}else{
-        		//未选中
-        		var total_price=parseInt($('#total').text());  //总金额
-	        	var num=$('#input_'+i).val();
-	        	var total=total_price-parseInt(price)*num;
-	        	if(total>=0){
-		        	$('#total').html(''+total);
-	        	}
-	        	$('#input_'+i).attr('disabled',false);
-	        	$('#btn_'+i).attr('disabled',false);
-	        	$('#bn_'+i).attr('disabled',false);
-        	}
+        function addTotalPrice(i){
+//         	if($('#checkbox_'+i).is(':checked')){
+//         		//选中
+// 	        	var total_price=parseInt($('#total').text());  //总金额
+// 	        	var num=$('#input_'+i).val();
+// 	        	var total=total_price+parseInt(price)*num;
+// 	        	$('#total').html(''+total);
+// 	        	$('#input_'+i).attr('disabled',true);
+// 	        	$('#btn_'+i).attr('disabled',true);
+// 	        	$('#bn_'+i).attr('disabled',true);
+//         	}else{
+//         		//未选中
+//         		var total_price=parseInt($('#total').text());  //总金额
+// 	        	var num=$('#input_'+i).val();
+// 	        	var total=total_price-parseInt(price)*num;
+// 	        	if(total>=0){
+// 		        	$('#total').html(''+total);
+// 	        	}
+// 	        	$('#input_'+i).attr('disabled',false);
+// 	        	$('#btn_'+i).attr('disabled',false);
+// 	        	$('#bn_'+i).attr('disabled',false);
+//         	}
+			var total=0;
+			var obj=$("input:checkbox[name='checkbox']:checked");
+			if(obj.length>0){
+				$("input:checkbox[name='checkbox']:checked").each(function(){
+	//                 if($(this).attr("checked")){ 
+	                    var i=$(this).val();   //获取所有选中的checkbox的value
+	                    var num=$('#input_'+i).val();  //获取所有选中的checkbox对应的input总的value
+	                    var price=$('#p_'+i).text(); //获取对应的单价
+	                    var totalprice=parseInt(price)*parseInt(num);
+	                    total+=totalprice;
+	//                 }
+	                $('#total').html(''+total);
+	            })
+			}else{
+				$('#total').html('0');
+			}
         }
+        
         
         //验证输入框中的数量大小
         function check(buynumber,i,surplusnum){
         	if($('#input_'+i).val()>surplusnum){
-        		$('#input_'+i).val(buynumber);
+//         		$('#input_'+i).val(buynumber);
         		alert('您购买的数量超过了剩余商品数量:'+surplusnum);
         	}
+        	addTotalPrice(i);   //i
         }
         
         Array.prototype.indexOf = function(val) {

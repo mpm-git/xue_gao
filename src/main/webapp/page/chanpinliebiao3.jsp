@@ -348,7 +348,7 @@
                                 +'<button type="button" class="btn btn-default btn-minus" aria-label="Left Align" onclick="minus('+data.result[i].id+');">'
                                 +'<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'
                                 +'</button>'
-                                +'<input id="input_'+data.result[i].id+'" class="number" type="text" style="width:30px;" value="0"/>'
+                                +'<input id="input_'+data.result[i].id+'" class="number" type="text" style="width:30px;" value="0"  onblur="check('+data.result[i].id+','+data.result[i].num+');"/>'
                                 +'<button id="btn_'+data.result[i].id+'" type="button" class="btn btn-default btn-plus" aria-label="Left Align" onclick="add('+data.result[i].id+','+data.result[i].num+');">'
                                 +'<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'
                                 +'</button>'
@@ -393,7 +393,7 @@
                                 +'<button type="button" class="btn btn-default btn-minus" aria-label="Left Align" onclick="minus('+data.result[i].id+');">'
                                 +'<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'
                                 +'</button>'
-                                +'<input id="input_'+data.result[i].id+'" class="number" type="text" style="width:30px;" value="0"/>'
+                                +'<input id="input_'+data.result[i].id+'" class="number" type="text" style="width:30px;" value="0"  onblur="check('+data.result[i].id+','+data.result[i].num+');"/>'
                                 +'<button id="btn_'+data.result[i].id+'" type="button" class="btn btn-default btn-plus" aria-label="Left Align" onclick="add('+data.result[i].id+','+data.result[i].num+');">'
                                 +'<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'
                                 +'</button>'
@@ -435,6 +435,15 @@
         	if(number>0){
 	        	$('#input_'+id).val(number-1);
 	        	$('#btn_'+id).attr("disabled",false);
+        	}
+        }
+        
+        //验证输入框的数量是超载
+        function check(id,surplusnum){
+        	var value=$('#input_'+id).val();
+        	if(value>surplusnum){
+        		$('#input_'+id).val(0);
+        		alert('您购买的数量超过了剩余商品数量:'+surplusnum);
         	}
         }
         
