@@ -149,7 +149,7 @@
     			for(var i=0;i<goods.length;i++){
 		    		$('#good_list').append('<div class="row item-list">'
 		    				+'<div class="col-xs-3 text-center " style="padding:0px;padding-left:15px;">'
-			                +'<img class="item-img img-thumbnail" src="../res/img/goods/1.jpg" />'
+			                +'<img class="item-img img-thumbnail" src="'+goods[i].img_address+'" />'
 			                +'</div>'
 			                +'<div class="col-xs-6 item-info">'
 			                +'<div class="col-xs-12 col-sm-6">'
@@ -176,6 +176,9 @@
 			                +'</div>');
 		    		$('#input_'+i).val(goods[i].buynumber);
 		    		total+=parseInt(goods[i].price);
+		    		if(goods[i].surplusnum==goods[i].buynumber){
+		    			$('#btn_'+i).attr("disabled",true);
+		    		}
     			}
 		    	$('#total').html(''+total);
     			
@@ -188,7 +191,7 @@
         		$('#btn_'+i).attr("disabled",true);
         	}else{
 	        	$('#input_'+i).val(number_+1);
-	        	if((number_+1)==num){
+	        	if((number_+1)==surplusnum){
 	        		$('#btn_'+i).attr("disabled",true);
 	        	}
         	}
@@ -201,7 +204,7 @@
         function minus(i){
         	var num=$('#input_'+i).val();
         	var number=parseInt(num);
-        	if(number>0){
+        	if(number>=0){
 	        	$('#input_'+i).val(number-1);
 	        	$('#btn_'+i).attr("disabled",false);
         	}

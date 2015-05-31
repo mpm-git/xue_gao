@@ -18,7 +18,6 @@ public class GoodsController {
 	@RequestMapping(value="/get_goods_type", method=RequestMethod.GET)
 	@ResponseBody
 	public Result getGoodsType(){
-		System.out.println("in get2");
 		Result result=new Result();
 		result.setStatus("success");
 		result.setResult(goodsService.getGoodsItem());
@@ -28,9 +27,7 @@ public class GoodsController {
 	@RequestMapping(value="/get_goods_by_goodtype", method=RequestMethod.GET)
 	@ResponseBody
 	public Result getGoods(HttpServletRequest request){
-		System.out.println("in get1");
 		String type=request.getParameter("goodtype");
-		System.out.println(type);
 		Result result=new Result();
 		result.setStatus("success");
 		result.setResult(goodsService.getGoodsByKindType(Integer.parseInt(type)));

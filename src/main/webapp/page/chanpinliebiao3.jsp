@@ -352,7 +352,7 @@
                                 +'<button id="btn_'+data.result[i].id+'" type="button" class="btn btn-default btn-plus" aria-label="Left Align" onclick="add('+data.result[i].id+','+data.result[i].num+');">'
                                 +'<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'
                                 +'</button>'
-                                +'<input type="image" src="../res/img/shopping_cart.png" onclick="addShopping_cart('+data.result[i].id+',\''+data.result[i].name+'\',\''+data.result[i].price+'\');"/>'
+                                +'<input title="添加购物车" type="image" src="../res/img/shopping_cart.png" onclick="addShopping_cart(\''+data.result[i].address+'\','+data.result[i].id+','+data.result[i].num+',\''+data.result[i].name+'\',\''+data.result[i].price+'\');"/>'
                                 +'</div>'
                                 +'</div>');
                 	}
@@ -397,7 +397,7 @@
                                 +'<button id="btn_'+data.result[i].id+'" type="button" class="btn btn-default btn-plus" aria-label="Left Align" onclick="add('+data.result[i].id+','+data.result[i].num+');">'
                                 +'<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'
                                 +'</button>'
-                                +'<input title="添加购物车" type="image" src="../res/img/shopping_cart.png" onclick="addShopping_cart('+data.result[i].id+','+data.result[i].num+',\''+data.result[i].name+'\',\''+data.result[i].price+'\');"/>'
+                                +'<input title="添加购物车" type="image" src="../res/img/shopping_cart.png" onclick="addShopping_cart(\''+data.result[i].address+'\','+data.result[i].id+','+data.result[i].num+',\''+data.result[i].name+'\',\''+data.result[i].price+'\');"/>'
                                 +'</div>'
                                 +'</div>');
                 	}
@@ -438,7 +438,7 @@
         	}
         }
         
-        function addShopping_cart(id,surplusnum,name,price){  //surplusnum剩余数量
+        function addShopping_cart(img_address,id,surplusnum,name,price){  //surplusnum剩余数量
         	var num=$('#input_'+id).val();  //获取输入框中购买的数量
         	if(parseInt(num)==0){
     			alert('您未选择商品数量，请选择后再进行添加购物车！');
@@ -458,24 +458,27 @@
 		        			},
 		        			phnone:{}
 		        	};
-		        	xugao.xugao.orderinfo.goods.push({id:id,surplusnum:surplusnum,name:name,price:price,buynumber:parseInt(num)});
+		        	xugao.xugao.orderinfo.goods.push({id:id,surplusnum:surplusnum,name:name,price:price,buynumber:parseInt(num),img_address:img_address});
 		        	store.set( 'xugao' , xugao);
         		}else{
         			//如果购物车中已经有这个商品了，就不能再添加了
         			var xugao=store.get('xugao');
         			var goods=xugao.xugao.orderinfo.goods;
+        			var flag=true;
         			for(var i=0;i<goods.length;i++){
         				console.info(goods[i].id+':'+id);
         				if(parseInt(goods[i].id)==parseInt(id)){
         					if(confirm('您好,您的购物车中已经存在此商品,可以前往购物车中操作!')){
+        						flag=false;
         						window.location="gouwuche.jsp";
         					}
         					break;
         				}
         			}
-        			console.info(xugao);
-        			xugao.xugao.orderinfo.goods.push({id:id,surplusnum:surplusnum,name:name,price:price,buynumber:parseInt(num)});
-		        	store.set( 'xugao' , xugao);
+        			if(flag==true){
+	        			xugao.xugao.orderinfo.goods.push({id:id,surplusnum:surplusnum,name:name,price:price,buynumber:parseInt(num),img_address:img_address});
+			        	store.set( 'xugao' , xugao);
+        			}
         		}
         		}
         	}

@@ -25,16 +25,13 @@ public class GoodsServiceImpl implements GoodsService{
 	@Override
 	@Transactional
 	public List<Goods> getGoodsByKindType(int goodType) {
-		System.out.println("in getGoodsByKindType");
 		String hql1="from Kind where goodid<>0 and goodtype="+goodType;
 		List<Kind> list=baseDao.find(hql1);
-		System.out.println("size:"+list.size());
 		StringBuilder sb=new StringBuilder();
 		for(int i=0;i<list.size();i++){
 			sb=sb.append("'"+list.get(i).getGoodid()+"',");
 		}
 		String st=sb.substring(0, sb.length()-1);
-		System.out.println("st:"+st);
 		String hql="from Goods where id in ("+st+")";
 		return baseDao.find(hql);
 		
