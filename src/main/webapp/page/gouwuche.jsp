@@ -130,7 +130,7 @@
         
         <div class="row total-box"> 
             <div class="col-xs-12 col-sm-6 text-center">
-                <span class="total-text">总金额：<font class="renminbi">￥</font><font id="total"></font></span>
+                <span class="total-text">总金额：<font class="renminbi">￥</font><font id="total">0</font></span>
             </div>
             <div class="col-xs-12 col-sm-6 text-center">
                 <a href="shouhuodizhi.jsp" id="submit" type="button" class="btn btn-default">结算</a>
@@ -141,14 +141,15 @@
     	$(document).ready(function(){
     		//初始化购物车
     		var xugao=store.get('xugao');
-    		console.info(xugao);
     		if(xugao!=null){
     			var goods=xugao.xugao.orderinfo.goods;
-    			console.info(goods);
     			var total=0;
     			for(var i=0;i<goods.length;i++){
 		    		$('#good_list').append('<div class="row item-list">'
-		    				+'<div class="col-xs-3 text-center " style="padding:0px;padding-left:15px;">'
+		    				+'<div class="col-xs-1 text-center " style="padding:0px;padding-left:15px;padding-top:25px;padding-right:0px;">'
+		    				+'<input id="checkbox_'+i+'" type="checkbox" onclick="addTotalPrice('+i+',\''+goods[i].price+'\');"/>'
+		    				+'</div>'
+		    				+'<div class="col-xs-1 text-center " style="padding:0px;padding-left:15px;">'
 			                +'<img class="item-img img-thumbnail" src="'+goods[i].img_address+'" />'
 			                +'</div>'
 			                +'<div class="col-xs-6 item-info">'
@@ -156,10 +157,10 @@
 			                +'<p>'+goods[i].name+'</p>'       //商品名称
 			                +'</div>'
 			                +'<div class="col-xs-12 col-sm-6" style="margin-top:13px;">'
-			                +'<button type="button" class="btn btn-default btn-minus" aria-label="Left Align" onclick="minus('+i+');">'
+			                +'<button type="button" class="btn btn-default btn-minus" aria-label="Left Align" onclick="minus('+i+',\''+goods[i].price+'\');">'
 			                +'<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'
 			                +'</button>'
-			                +'<input id="input_'+i+'" class="number" type="text" style="width:30px;" />'
+			                +'<input id="input_'+i+'" class="number" type="text" style="width:30px;" value="'+goods[i].buynumber+'"/>'
 			                +'<button id="btn_'+i+'" type="button" class="btn btn-default btn-plus" aria-label="Left Align" onclick="add_num('+i+','+goods[i].surplusnum+',\''+goods[i].price+'\');">'
 			                +'<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'
 			                +'</button>'
@@ -168,45 +169,59 @@
 // 			                +'<p>数量</p>'   //购买数量
 			                +'</div>'             
 			                +'</div>' 	    
-			                +'<div class="col-xs-3 item-info">' 
+			                +'<div class="col-xs-4 item-info">'
+			                +'<div class="col-xs-12 col-sm-9">'
 			                +' <p>￥'+goods[i].price+'</p>'    //价格
+			                +'</div>'
+			                +'<div class="col-xs-12 col-sm-3">'
 			                +'<button type="button" class="btn btn-default btn-delete" onclick="canclegood('+goods[i].id+')">' 
 			                +'<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' 
-			                +'</button>' 	
+			                +'</button>'
+			                +'</div>'
 			                +'</div>');
-		    		$('#input_'+i).val(goods[i].buynumber);
-		    		total+=parseInt(goods[i].price);
-		    		if(goods[i].surplusnum==goods[i].buynumber){
-		    			$('#btn_'+i).attr("disabled",true);
-		    		}
+		    		//+号按钮display
+		    		if(goods[i].buynumber==goods[i].surplusnum){
+		        		$('#btn_'+i).attr("disabled",true);
+		        	}
+// 		    		$('#input_'+i).val(goods[i].buynumber);
+// 		    		total+=parseInt(goods[i].price)*(goods[i].buynumber);
+// 		    		if(goods[i].surplusnum==goods[i].buynumber){
+// 		    			$('#btn_'+i).attr("disabled",true);
+// 		    		}
     			}
-		    	$('#total').html(''+total);
+// 		    	$('#total').html(''+total);
     			
     		}
     	});
         function add_num(i,surplusnum,price){ //surplusnum剩余数量
         	var number=$('#input_'+i).val();
-        	var number_=parseInt(number);
+        	var number_=parseInt(number);   //input中为改变前的数量
         	if(number>=surplusnum){
         		$('#btn_'+i).attr("disabled",true);
         	}else{
-	        	$('#input_'+i).val(number_+1);
+	        	$('#input_'+i).val(number_+1);    //number_+1 input中+1后的数量
 	        	if((number_+1)==surplusnum){
 	        		$('#btn_'+i).attr("disabled",true);
 	        	}
         	}
         	//计算总金额
-        	var total=0;
-        	total=parseInt(price)*number;
-        	$('#total').html(''+total);
+//         	var total=0;
+//         	total=parseInt(price)*(number_+1);
+//         	var total_price=parseInt($('#total').text());  //总金额
+//         	var p1=total_price-(number_*parseInt(price));   //此商品数量为0的总价格
+//         	$('#total').html(''+(p1+total));
         }
         
-        function minus(i){
+        function minus(i,price){
         	var num=$('#input_'+i).val();
         	var number=parseInt(num);
-        	if(number>=0){
+        	if(number>0){
 	        	$('#input_'+i).val(number-1);
 	        	$('#btn_'+i).attr("disabled",false);
+	        	//计算总金额
+// 	        	var total_price=parseInt($('#total').text());  //总金额
+// 	        	total_price=total_price-price;
+// 	        	$('#total').html(''+total_price);
         	}
         }
         
@@ -214,13 +229,29 @@
         	var xugao=store.get('xugao');
         	var goods=xugao.xugao.orderinfo.goods;
         	for(var i=0;i<goods.length;i++){
-        		console.info(goods[i].id+':'+id);
         		if(goods[i].id==id){
         			goods.remove(goods[i]);
         			store.set('xugao',xugao);
         			window.location.href="gouwuche.jsp";
         			break;
         		}
+        	}
+        }
+        
+        //选择checkbox改变总金额
+        function addTotalPrice(i,price){
+        	if($('#checkbox_'+i).is(':checked')){
+        		//选中
+	        	var total_price=parseInt($('#total').text());  //总金额
+	        	var num=$('#input_'+i).val();
+	        	var total=total_price+parseInt(price)*num;
+	        	$('#total').html(''+total);
+        	}else{
+        		//未选中
+        		var total_price=parseInt($('#total').text());  //总金额
+	        	var num=$('#input_'+i).val();
+	        	var total=total_price-parseInt(price)*num;
+	        	$('#total').html(''+total);
         	}
         }
         
