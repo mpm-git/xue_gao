@@ -10,12 +10,29 @@ import javax.persistence.Table;
 @NamedQueries({ @NamedQuery(name = "Kind.findAll", query = "SELECT g FROM Kind g")})
 public class Kind extends IdEntity {
 	private int level;
-	private int pid;
+	private int pid;  //0 一级  1二级
 	private String code;//类别编号:由父类 code+{level}+自己id组成
-	private String name;
+	private String name;  //类型名称
 	private String icon;
 	private String url;
-	private int rank;
+	private int rank;  //二级菜单的排序
+	private int goodid;  //商品id 商品类型跟商品id one to many
+	private int goodtype;   //商品类型
+	
+	public int getGoodtype() {
+		return goodtype;
+	}
+	public void setGoodtype(int goodtype) {
+		this.goodtype = goodtype;
+	}
+	public int getGoodid() {
+		return goodid;
+	}
+	public void setGoodid(int goodid) {
+		this.goodid = goodid;
+	}
+	
+	
 	public int getLevel() {
 		return level;
 	}

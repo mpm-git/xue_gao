@@ -51,13 +51,13 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class=" nav navbar-nav navbar-right">
                     <li>
-                        <a class="clicked" href="index.html">首页</a>
+                        <a class="clicked" href="index.jsp">首页</a>
                     </li>
                     <li>
-                        <a href="chanpinliebiao3.html">热门产品</a>
+                        <a href="chanpinliebiao3.jsp">热门产品</a>
                     </li>
                     <li>
-                        <a href="gouwuche.html">购物车</a>
+                        <a href="gouwuche.jsp">购物车</a>
                     </li>
                     <li>
                         <a href="#">注册</a>

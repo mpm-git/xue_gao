@@ -12,8 +12,16 @@ import javax.persistence.Table;
 public class Goods extends IdEntity {
 	private String name;
 	private double price;
-	private int num;
+	private int num;   //剩余数量
 	private String desr;
+	private String address; //存放图片地址
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String getName() {
 		return name;
 	}
