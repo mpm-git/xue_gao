@@ -246,12 +246,15 @@
 	        	var num=$('#input_'+i).val();
 	        	var total=total_price+parseInt(price)*num;
 	        	$('#total').html(''+total);
+	        	$('#input_'+i).attr('disabled',true);
         	}else{
         		//未选中
         		var total_price=parseInt($('#total').text());  //总金额
 	        	var num=$('#input_'+i).val();
 	        	var total=total_price-parseInt(price)*num;
-	        	$('#total').html(''+total);
+	        	if(total>=0){
+		        	$('#total').html(''+total);
+	        	}
         	}
         }
         
