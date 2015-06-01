@@ -82,9 +82,9 @@
             <input type="image" src="../res/img/index/bd.png" />           
         </div>
         <div class="col-xs-8 btn-div">
-            <input type="image" src="../res/img/index/ms.png" onclick='' />
-            <input type="image" src="../res/img/index/ry.png" onclick='getGoods(1)'/>
-            <input type="image" src="../res/img/index/bg.png" onclick='getGoods(1)'/>
+            <input type="image" src="../res/img/index/ms.png" onclick='window.location.href="chanpinliebiao3.jsp?typeid=0"' />
+            <input type="image" src="../res/img/index/ry.png" onclick='window.location.href="chanpinliebiao3.jsp?typeid=1"'/>
+            <input type="image" src="../res/img/index/bg.png" onclick='window.location.href="chanpinliebiao3.jsp?typeid=2"'/>
         </div>
         
     </div>
