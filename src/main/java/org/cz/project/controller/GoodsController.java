@@ -15,6 +15,11 @@ public class GoodsController {
 	
 	@Autowired GoodsService goodsService;
 	
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	@ResponseBody
+	public String index(){
+		return result;
+	}
 	@RequestMapping(value="/get_goods_type", method=RequestMethod.GET)
 	@ResponseBody
 	public Result getGoodsType(){

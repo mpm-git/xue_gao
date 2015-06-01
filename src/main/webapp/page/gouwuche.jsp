@@ -48,15 +48,15 @@
                     <li>
                         <a href="gouwuche.jsp" class="clicked">购物车</a>
                     </li>
-                    <li>
-                        <a href="#">注册</a>
-                    </li>
-                    <li>
-                        <a href="#">登陆</a>
-                    </li>
-                    <li>
-                        <a href="#">会员中心</a>
-                    </li>
+<!--                     <li> -->
+<!--                         <a href="#">注册</a> -->
+<!--                     </li> -->
+<!--                     <li> -->
+<!--                         <a href="#">登陆</a> -->
+<!--                     </li> -->
+<!--                     <li> -->
+<!--                         <a href="#">会员中心</a> -->
+<!--                     </li> -->
                 </ul>
             </div>
         </div>
@@ -133,14 +133,30 @@
                 <span class="total-text">总金额：<font class="renminbi">￥</font><font id="total">0</font></span>
             </div>
             <div class="col-xs-12 col-sm-6 text-center">
-                <a href="shouhuodizhi.jsp" id="submit" type="button" class="btn btn-default">结算</a>
+                <a href="javascript:jiesuan()" id="submit" type="button" class="btn btn-default">结算</a>
             </div> 
         </div>
     </div>
     <script type="text/javascript">
+    //shouhuodizhi.jsp
+	    function jiesuan()
+	    {
+	    	var xugao=store.get('xugao');
+	    	var goods=xugao.xugao.orderinfo.goods;
+	        if(!goods||goods.length<=0)
+		    {
+			     alert("购物车为空");
+			     return;
+			}
+	        else
+		    {
+	        	window.location.href="shouhuodizhi.jsp";
+			}
+	    }
     	$(document).ready(function(){
     		//初始化购物车
     		var xugao=store.get('xugao');
+    		console.info(xugao);
     		if(xugao!=null){
     			var goods=xugao.xugao.orderinfo.goods;
     			var total=0;

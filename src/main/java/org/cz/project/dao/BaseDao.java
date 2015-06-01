@@ -73,10 +73,10 @@ public interface BaseDao<T> {
 	Map executeByCondition(Class clazz, Map<String, Object> condition,
 			String order, PaginationModel pagination, String procedureName);
 
-	QueryResult<List<T>> find2QueryResult(String hql, Map<String, Object> params,
-			int page, int rows);
+	QueryResult<T> find2QueryResult(String hql, Map<String, Object> params,
+			int start, int length);
 
-	QueryResult<List<T>> find2QueryResultByPage(String hql,Map<String, Object> params, int page, int rows);
+	QueryResult<T> find2QueryResultByPage(String hql,Map<String, Object> params, int page, int rows);
 
 
 }

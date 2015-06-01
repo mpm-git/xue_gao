@@ -208,7 +208,14 @@ Util.formatString = function (str) {
 	}
 	return str;
 };
-
+Util.getLocation=function(success)
+{
+	if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+    } else {
+        alert("您的浏览器不支持地理定位");
+    }
+};
 Util.getBrowserVersion=function() {
 	var browser = {};
 	var userAgent = navigator.userAgent.toLowerCase();

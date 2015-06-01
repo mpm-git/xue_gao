@@ -213,11 +213,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	@Override
-	public QueryResult<List<T>> find2QueryResultByPage(String hql, Map<String, Object> params, int page, int rows) {
+	public QueryResult<T> find2QueryResultByPage(String hql, Map<String, Object> params, int page, int rows) {
 		return find2QueryResult(hql,params,(page - 1) * rows,rows);
 	}
 	@Override
-	public QueryResult<List<T>> find2QueryResult(String hql, Map<String, Object> params, int start, int length) {
+	public QueryResult<T> find2QueryResult(String hql, Map<String, Object> params, int start, int length) {
 		String _queryString=hql.trim().toLowerCase();
 		hql=hql.trim();
 		String _countQueryString=null;
@@ -229,7 +229,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		}
 		List<T> list = find(hql,params,start,length);
 		Long count = this.count(_countQueryString,params);
-		QueryResult<List<T>> result=new QueryResult<List<T>>(count, start, length,list);
+		if(start<=0)
+			start=0;
+		if(length<=0)
+			length=count.intValue();
+		QueryResult<T> result=new QueryResult<T>(count, start, length,list);
 		return result;
 	}
 	public List<T> findByPage(String hql, Map<String, Object> params, int page, int rows) {
@@ -261,8 +265,16 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				}
 			}
 		}
-		
-		return q.setFirstResult(start).setMaxResults(length).list();
+		if(start<=0)
+			start=0;
+		if(length<=0)
+		{
+			return q.list();
+		}
+		else
+		{
+			return q.setFirstResult(start).setMaxResults(length).list();
+		}
 	}
 
 	@Override

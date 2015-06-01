@@ -54,15 +54,15 @@
                     <li>
                         <a href="gouwuche.jsp">购物车</a>
                     </li>
-                    <li>
-                        <a href="#">注册</a>
-                    </li>
-                    <li>
-                        <a href="#">登陆</a>
-                    </li>
-                    <li>
-                        <a href="#">会员中心</a>
-                    </li>
+<!--                     <li> -->
+<!--                         <a href="#">注册</a> -->
+<!--                     </li> -->
+<!--                     <li> -->
+<!--                         <a href="#">登陆</a> -->
+<!--                     </li> -->
+<!--                     <li> -->
+<!--                         <a href="#">会员中心</a> -->
+<!--                     </li> -->
                 </ul>
             </div>
         </div>
@@ -260,7 +260,7 @@
         $(document).ready(function () {
         	 $.ajax({
                  type:"GET",
-                 url:"/xue-gao/get_goods_type",
+                 url:"/get_goods_type",
                  data:{Name:"sanmao",Password:"sanmaoword"},
                  datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
                  beforeSend:function(){
@@ -329,7 +329,7 @@
         function getGoods(goodtype){
         	$.ajax({
                 type:"GET",
-                url:"/xue-gao/get_goods_by_goodtype",
+                url:"/get_goods_by_goodtype",
                 data:{goodtype:goodtype},
                 datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
                 beforeSend:function(){
@@ -375,7 +375,7 @@
         function getAllGoods(){
         	$.ajax({
                 type:"GET",
-                url:"/xue-gao/get_all_goods",
+                url:"/get_all_goods",
                 data:{},
                 datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
                 beforeSend:function(){

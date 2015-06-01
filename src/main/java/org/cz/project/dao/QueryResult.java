@@ -3,6 +3,8 @@
  */
 package org.cz.project.dao;
 
+import java.util.List;
+
 
 /**
  * @ClassName: QueryResult
@@ -19,20 +21,20 @@ public class QueryResult<T> {
 
 	private long length;
 
-	private T result;
+	private List<T> result;
 
 	/**
 	 * @param total >=0 
 	 * @param page [1..n] if(page>this.pageSize||page<=0) page=1;
 	 * @param row [1..n] if row<=0 than Math.abs(row==0?1:row)
-	 * @param result
+	 * @param list
 	 */
-	public QueryResult(long total, long start, long length, T result) {
+	public QueryResult(long total, long start, long length, List<T> list) {
 		super();
 		this.length=length;
 		this.start=start;
 		this.total=total;
-		this.result=result;
+		this.result=list;
 	}
 
 	public long getTotal() {
@@ -47,7 +49,7 @@ public class QueryResult<T> {
 		return length;
 	}
 
-	public T getResult() {
+	public List<T> getResult() {
 		return result;
 	}
 
