@@ -18,7 +18,7 @@ public class GoodsController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	@ResponseBody
 	public String index(){
-		return result;
+		return "";
 	}
 	@RequestMapping(value="/get_goods_type", method=RequestMethod.GET)
 	@ResponseBody
