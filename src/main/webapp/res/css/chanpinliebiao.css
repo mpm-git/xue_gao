@@ -21,6 +21,9 @@ body{
         position:absolute;
         left:-50%;
     }
+    #leftDiv{
+        position:absolute;
+    }
 }
 .categary-list{
     border-radius:0px;
