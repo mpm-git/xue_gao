@@ -287,14 +287,16 @@
 			var obj=$("input:checkbox[name='checkbox']:checked");
 			if(obj.length>0){
 				$("input:checkbox[name='checkbox']:checked").each(function(){
-	//                 if($(this).attr("checked")){ 
-	                    var i=$(this).val();   //获取所有选中的checkbox的value
-	                    var num=$('#input_'+i).val();  //获取所有选中的checkbox对应的input总的value
-	                    var price=$('#p_'+i).text(); //获取对应的单价
-	                    var totalprice=parseInt(price)*parseInt(num);
-	                    total+=totalprice;
-	//                 }
+                    var i=$(this).val();   //获取所有选中的checkbox的value
+                    var num=$('#input_'+i).val();  //获取所有选中的checkbox对应的input总的value
+                    var price=$('#p_'+i).text(); //获取对应的单价
+                    var totalprice=parseInt(price)*parseInt(num);
+                    total+=totalprice;
 	                $('#total').html(''+total);
+	                var xugao=store.get('xugao');
+	                var goods=xugao.xugao.orderinfo.goods;
+	                goods[i].buynumber=num;
+	                store.set('xugao',xugao);
 	            })
 			}else{
 				$('#total').html('0');
