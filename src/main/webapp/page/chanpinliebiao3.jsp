@@ -41,7 +41,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand">Project name</a>
+                <img class="logo-img" src="../res/img/logo.png"/>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class=" nav navbar-nav navbar-right">
@@ -492,7 +492,51 @@
         		}
         	}
         }
-        
+        $(document).ready(function () {
+            var flag = false;
+            $("#categaryBtn").click(function () {
+                if (!flag) {
+                    $("#contentBox").addClass("all-to-right");
+                    $("#rightDiv").animate({
+                        position: "relative",
+                        left: "50%"
+                    }, 500);
+                    $("#leftDiv").animate({
+                        position: "absolute",
+                        left: "0px"
+                    }, 500);
+                    //$("#rightDiv").addClass("right-to-right");
+                    //$("#contentBox").addClass("all-to-right");
+                    //$("#leftDiv").addClass("left-to-right");
+                    flag = true;
+                }
+                else {
+                    $("#rightDiv").animate({
+                        left: "0px",
+                        position: "static"
+                    }, 500);
+
+                    $("#leftDiv").animate({
+                        left: "-50%"
+                    }, 500);
+                    $("#contentBox").removeClass("all-to-right");
+                    //$("#contentBox").removeClass("all-to-right");
+                    //$("#rightDiv").removeClass("right-to-right");
+
+                    //$("#leftDiv").removeClass("left-to-right");
+                    flag = false;
+                }
+
+            });
+
+            var con = document.querySelector('#con');
+            var msnry;
+            imagesLoaded(con, function () {
+                msnry = new Masonry(con, {
+                    "gutter": 0
+                });
+            });
+        });
     </script>
 
 </body>

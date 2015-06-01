@@ -118,7 +118,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" style="color:white;">Project name</a>
+                <img class="logo-img" src="../res/img/logo.png"/>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class=" nav navbar-nav navbar-right">

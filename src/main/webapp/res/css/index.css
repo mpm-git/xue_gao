@@ -1,0 +1,24 @@
+﻿body {
+}
+.bg-div{
+    position:relative;
+}
+.bg-img{
+    width:100%;
+    height:auto;
+}
+.iphone-img{
+    position:absolute;
+    width:auto;
+    height:100%;
+    top:0px; 
+    left:60px;  
+}
+.btn-div{
+    text-align:center;
+    margin-top:20px;
+}
+.btn-div input{
+    height:150px;
+    width:auto;
+}

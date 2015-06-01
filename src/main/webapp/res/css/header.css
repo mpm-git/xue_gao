@@ -3,6 +3,14 @@
     background:none !important;
     background-color:#6e6b68 !important;
 }
+.navbar .logo-img{
+    position:absolute;
+    height:90px;
+    width:auto;
+    top:11px;
+    left:20px;
+    z-index:3000;
+}
 .navbar .container{
     height:112px;
     background:none;

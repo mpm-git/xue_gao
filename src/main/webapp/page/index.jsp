@@ -11,6 +11,7 @@
 
     	loadJsCssFileRelToLoadJs("../css/header.css");
     	loadJsCssFileRelToLoadJs("../css/chanpinliebiao.css");
+    	loadJsCssFileRelToLoadJs("../css/index.css");
     	//<!-- bootstrap -->
     	loadJsCssFileRelToLoadJs("bootstrap-3.3.0-dist/dist/css/bootstrap.css");
     	loadJsCssFileRelToLoadJs("bootstrap-3.3.0-dist/dist/js/bootstrap.min.js");
@@ -46,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand">Project name</a>
+                <img class="logo-img" src="../res/img/logo.png"/>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class=" nav navbar-nav navbar-right">
@@ -72,8 +73,19 @@
             </div>
         </div>
     </nav>
-    <div class="container-fuild" >
-        <img style="width:100%;height:auto;" src="../res/img/index.jpg" />
+    <div class="container-fuild">
+        <div class="row bg-div">
+            <img class="bg-img" src="../res/img/index/main.jpg" />
+            <img class="iphone-img" src="../res/img/index/iphone.png" />
+        </div>     
+        <div class="col-xs-4 btn-div">
+            <input type="image" src="../res/img/index/bd.png" />           
+        </div>
+        <div class="col-xs-8 btn-div">
+            <input type="image" src="../res/img/index/ms.png" onclick='' />
+            <input type="image" src="../res/img/index/ry.png" onclick='getGoods(1)'/>
+            <input type="image" src="../res/img/index/bg.png" onclick='getGoods(1)'/>
+        </div>
         
     </div>
 
