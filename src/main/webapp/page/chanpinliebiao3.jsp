@@ -247,15 +247,8 @@
                     </div>
 
                 </div>
-                <div id="con2" class="tab_content" style="display:none;">
-                    我是标签2
-                </div>
-                <div id="con3" class="tab_content" style="display:none;">
-                    我是标签3
-                </div>
             </div>
         </div>
-    </div>
     <script>
         $(document).ready(function () {
         	 $.ajax({
