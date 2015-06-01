@@ -251,10 +251,34 @@
         </div>
     <script>
         $(document).ready(function () {
+        	var typeid_=GetQueryString('typeid');
+        	if(typeid_!=null){
         	 $.ajax({
                  type:"GET",
                  url:"/get_goods_type",
-                 data:{Name:"sanmao",Password:"sanmaoword"},
+                 data:{},
+                 datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+                 beforeSend:function(){
+                 },
+                 success:function(data){
+                	for(var i=0;i<data.result.length;i++){
+                		$('#goodstype').append('<a href="#" class="list-group-item categary-item" onclick="getGoods('+data.result[i].goodtype+');">'+data.result[i].name+'<span class="left-arrow">></span></a>');
+                	}
+                	getGoods(parseInt(typeid_));
+// 		        	$('#goodstype').append('<a href="#" class="list-group-item categary-item">雪糕系列<span class="left-arrow">></span></a>'
+// 		                    +'<a href="#" class="list-group-item categary-item">冰饮系列<span class="left-arrow">></span></a>'
+// 		                    +'<a href="#" class="list-group-item categary-item">杯系列<span class="left-arrow">></span></a>');
+                 },
+                 complete: function(XMLHttpRequest, textStatus){
+                 },
+                 error: function(){
+                 }         
+              });
+        	}else{
+        	 $.ajax({
+                 type:"GET",
+                 url:"/get_goods_type",
+                 data:{},
                  datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
                  beforeSend:function(){
                  },
@@ -272,7 +296,7 @@
                  error: function(){
                  }         
               });
-        	
+        	}
         	
             var flag = false;
             $("#categaryBtn").click(function () {
