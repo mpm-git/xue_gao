@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title></title>
     <script  src="../res/js/load.js"></script>
     <script  type="text/javascript">
@@ -166,10 +166,10 @@
 		    				+'<div class="col-xs-1 text-center " style="padding:0px;padding-left:15px;padding-top:25px;padding-right:0px;">'
 		    				+'<input id="checkbox_'+i+'" name="checkbox" type="checkbox" onclick="addTotalPrice('+i+');" value="'+i+'"/>'
 		    				+'</div>'
-		    				+'<div class="col-xs-1 text-center " style="padding:0px;padding-left:15px;">'
+		    				+'<div class="col-xs-3 text-center " style="padding:0px;padding-left:15px;">'
 			                +'<img class="item-img img-thumbnail" src="'+goods[i].img_address+'" />'
 			                +'</div>'
-			                +'<div class="col-xs-6 item-info">'
+			                +'<div class="col-xs-5 item-info">'
 			                +'<div class="col-xs-12 col-sm-6">'
 			                +'<p>'+goods[i].name+'</p>'       //商品名称
 			                +'</div>'
@@ -186,7 +186,7 @@
 // 			                +'<p>数量</p>'   //购买数量
 			                +'</div>'             
 			                +'</div>' 	    
-			                +'<div class="col-xs-4 item-info">'
+			                +'<div class="col-xs-3 item-info">'
 			                +'<div class="col-xs-12 col-sm-9">'
 			                +' <p>￥<span id="p_'+i+'">'+goods[i].price+'</span></p>'    //价格
 			                +'</div>'
