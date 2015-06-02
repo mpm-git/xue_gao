@@ -73,7 +73,7 @@
         </div>
     </nav>
     <div class="container-fuild">
-        <div class="row bg-div">
+        <div class="bg-div">
             <img class="bg-img" src="../res/img/index/main.jpg" />
             <div class="iphone-div">           
                 <img src="../res/img/index/iphone_inner_img.png?r=1" />

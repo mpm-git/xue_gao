@@ -1,8 +1,7 @@
 ﻿.navbar{
     height:112px;
     background:none !important;
-    background-color:#6e6b68 !important;
-    font-size:12px;
+    background-color:rgba(110,107,104,0.8) !important;   
 }
 .navbar .logo-img{
     position:absolute;
