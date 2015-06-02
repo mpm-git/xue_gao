@@ -357,7 +357,7 @@
                 		$('#con').append('<div class="box">'
                                 +'<div class="box_img">'
                                 +'<a href="'+data.result[i].address+'" data-lightbox="1" data-title="哈哈哈哈">'
-                                    +'<img src="'+data.result[i].address+'" />'
+                                    +'<img src="'+changeImg(data.result[i].address,"_1")+'" />'
                                 +'</a>'
                                 +'<p>商品名称:'+data.result[i].name+'</p>'
                                 +'<p>价格:'+data.result[i].price+'元</p>'
@@ -402,7 +402,7 @@
                 		$('#con').append('<div class="box">'
                                 +'<div class="box_img">'
                                 +'<a href="'+data.result[i].address+'" data-lightbox="1" data-title="哈哈哈哈">'
-                                    +'<img src="'+data.result[i].address+'" />'
+                                    +'<img src="'+changeImg(data.result[i].address,"_1")+'" />'
                                 +'</a>'
                                 +'<p>商品名称:'+data.result[i].name+'</p>'
                                 +'<p>价格:'+data.result[i].price+'元</p>'
@@ -508,6 +508,21 @@
         		}
         		}
         	}
+        }
+        function GetQueryString(name) {
+        	   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+        	   var r = window.location.search.substr(1).match(reg);
+        	   if (r!=null) return (r[2]); return null;
+        }
+        function changeImg(img,add) {
+        	if(!img||img.length<=0)
+            {
+                return img;
+            }
+        	var pos = img.lastIndexOf(".");
+        	var strFileName=img.substr(0,pos);
+        	var FileExt=img.replace(/.+\./,"");
+        	return strFileName+add+"."+FileExt;
         }
     </script>
 

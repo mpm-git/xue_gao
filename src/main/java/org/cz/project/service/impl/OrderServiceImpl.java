@@ -29,11 +29,13 @@ public class OrderServiceImpl implements UserService{
 	}
 
 	@Override
+	@Transactional
 	public void saveOrUpdateUser(User user) {
 		baseDao.saveOrUpdate(user);
 	}
 
 	@Override
+	@Transactional
 	public User getUserByPhone(String phone) {
 		if(phone==null||phone.trim().length()<=0)
 			return null;

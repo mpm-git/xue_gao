@@ -76,7 +76,9 @@
     <div class="container-fuild">
         <div class="row bg-div">
             <img class="bg-img" src="../res/img/index/main.jpg" />
-            <img class="iphone-img" src="../res/img/index/iphone.png" />
+            <div class="iphone-div">           
+                <img src="../res/img/index/iphone_inner_img.png?r=1" />
+            </div>
         </div>     
         <div class="col-xs-4 btn-div">
             <input type="image" src="../res/img/index/bd.png" />           
