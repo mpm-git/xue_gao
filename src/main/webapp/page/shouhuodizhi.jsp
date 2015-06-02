@@ -109,7 +109,7 @@
          });
     </script>
 </head>
-<body style="padding-top:132px;padding-bottom:30px;">
+<body style="padding-top:100px;padding-bottom:30px;">
     <nav class="navbar navbar-fixed-top navbar-default">
         <div class="container">
             <div class="navbar-header">

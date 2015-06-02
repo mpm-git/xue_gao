@@ -26,7 +26,7 @@
     	loadJsCssFileRelToLoadJs("store.js/store.js");
     </script>
 </head>
-<body style="padding-top:132px;">
+<body style="padding-top:100px;">
     <nav class="navbar navbar-fixed-top navbar-default">
         <div class="container">
             <div class="navbar-header">
