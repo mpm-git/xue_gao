@@ -1,5 +1,6 @@
 ﻿*{
-    font-size:9px;
+	font-family:"微软雅黑";
+	font-size:12px;
 }
 body{
     overflow-x:hidden;
@@ -43,8 +44,8 @@ body{
     background-repeat:no-repeat;
     background-position-y:20px;
     background-position-x:90%;*/
-    padding-top:0px;
-    padding-bottom:0px;
+    padding-top:0px !important;
+    padding-bottom:0px !important;
     line-height:60px;
     font-weight:700;
     font-size:14px;

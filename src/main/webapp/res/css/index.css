@@ -1,4 +1,6 @@
-﻿body {
+﻿*{
+	font-family:"微软雅黑";
+	font-size:12px;
 }
 .bg-div{
     position:relative;
@@ -31,4 +33,19 @@
 .btn-div input{
     height:150px;
     width:auto;
+}
+@media(max-width:768px){
+    .btn-div input{
+        width:80%;
+        max-width:120px;
+        height:auto;
+    }
+}
+@media(min-width:768px){
+    .btn-div2{
+        text-align:right;
+    }
+    .btn-div4{
+        text-align:left;
+    }
 }

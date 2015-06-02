@@ -10,7 +10,6 @@
     <script  type="text/javascript">
 
     	loadJsCssFileRelToLoadJs("../css/header.css");
-    	loadJsCssFileRelToLoadJs("../css/chanpinliebiao.css");
     	loadJsCssFileRelToLoadJs("../css/index.css");
     	//<!-- bootstrap -->
     	loadJsCssFileRelToLoadJs("bootstrap-3.3.0-dist/dist/css/bootstrap.css");
@@ -79,16 +78,19 @@
             <div class="iphone-div">           
                 <img src="../res/img/index/iphone_inner_img.png?r=1" />
             </div>
-        </div>     
-        <div class="col-xs-4 btn-div">
+        </div>   
+        <div class="col-xs-6 col-sm-3 btn-div btn-div1">
             <input type="image" src="../res/img/index/bd.png" />           
         </div>
-        <div class="col-xs-8 btn-div">
+        <div class="col-xs-6 col-sm-3 btn-div btn-div2">
             <input type="image" src="../res/img/index/ms.png" onclick='window.location.href="chanpinliebiao3.jsp?typeid=0"' />
-            <input type="image" src="../res/img/index/ry.png" onclick='window.location.href="chanpinliebiao3.jsp?typeid=1"'/>
-            <input type="image" src="../res/img/index/bg.png" onclick='window.location.href="chanpinliebiao3.jsp?typeid=2"'/>
         </div>
-        
+        <div class="col-xs-6 col-sm-3 btn-div btn-div3">
+            <input type="image" src="../res/img/index/ry.png" onclick='window.location.href="chanpinliebiao3.jsp?typeid=1"' />
+        </div>
+        <div class="col-xs-6 col-sm-3 btn-div btn-div4">
+            <input type="image" src="../res/img/index/bg.png" onclick='window.location.href="chanpinliebiao3.jsp?typeid=2"' />
+        </div>          
     </div>
 
     
