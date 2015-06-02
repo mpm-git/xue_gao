@@ -1,18 +1,19 @@
 ﻿.navbar{
-    height:112px;
+    height:80px;
     background:none !important;
-    background-color:rgba(110,107,104,0.8) !important;   
+    background-color:rgba(0,0,0,0.5) !important;  
+    border-color:transparent !important; 
 }
 .navbar .logo-img{
     position:absolute;
-    height:90px;
+    height:70px;
     width:auto;
-    top:11px;
-    left:20px;
+    top:5px;
+    left:15%;
     z-index:3000;
 }
 .navbar .container{
-    height:112px;
+    height:80px;
     background:none;
 }
 .navbar-header button{
@@ -23,7 +24,7 @@
     background-color:#ca086f !important;
 }
 .navbar-header,#navbar{
-    margin-top:31px;
+    margin-top:15px;
 }
 #navbar li a{
     color:white;
